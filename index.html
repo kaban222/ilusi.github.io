@@ -1,1 +1,89 @@
+<HTML>
+    <head  lang="ru">
+        <meta charset="UTF-8" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Rowdies:wght@300;400;700&family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+            html{
+                background-color: rgb(31, 31, 31);
+            }
+            #superellips{
+                width: 800px;
+                height: 800px; 
+                border-radius: 50%; 
+                background-image: url("spiral2.png");
+                background-repeat: no-repeat;
+                background-size: 100%;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 60px;
+            }
 
+            .buttn{
+                margin-left: auto;
+                margin-right: auto;
+                height: 120px;
+                width: 100%;
+                font-size: 80px;
+                color: rgb(0, 0, 0);
+                border-radius: 3px;
+                border: 0px;
+                position: fixed;
+                bottom: 80px;
+            }
+            a{
+                text-decoration: none;
+            }
+        </style>
+    
+        <script>
+            
+            function getRandomInt(min, max) {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min) + min);
+            }
+    
+            function turnEllipse(degrees, tm) {
+                var angle = $("#superellips").data("angle");
+                if (!angle)
+                    angle = 0;
+                angle = +angle + degrees;
+                $("#superellips")
+                    .data("angle", angle)
+                    .css({ transform: "rotate(" + angle + "deg)", transition: tm });
+            }
+    
+            function start(){
+                kol = getRandomInt(30000, 35000)
+                _kol = 0
+                tm = "1s"
+                for (i=0; i<kol; i++){
+                    turnEllipse(1, tm);
+                    _kol += 1
+                    if (_kol >= (kol*(0.25))){
+                        tm = "0.1s"
+                    }
+                    if (_kol >= (kol*(0.8))){
+                        tm = "10s"
+                    }
+                    if (_kol >= (kol*(0.85))){
+                        tm = "17s"
+                    }
+                    if (_kol >= (kol*(0.9))){
+                        tm = "25s"
+                    }
+                    if (kol-10 <= kol && (_kol <= (kol*(0.9)))){
+                        tm = "0.1s"
+                    }
+    
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div id="superellips"></div>
+        <input onclick="start()" type="button" value="Нажми меня" class="buttn">
+    </body>
+    </HTML>
